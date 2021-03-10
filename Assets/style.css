@@ -22,6 +22,7 @@ body {
   background-color: blanchedalmond;
   border-radius: 5px;
   padding: 10px;
+  box-shadow: 0 0 10px 2px;
 }
 
 .btn-grid {
@@ -32,7 +33,7 @@ body {
 }
 
 .btn {
-  border: 1px solid lightblue;
+  border: 1px solid rgb(0, 0, 0);
   background-color: white;
   border-radius: 5px;
   padding: 5px 10px;
@@ -43,6 +44,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#start-btn {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 10px 20px;
 }
 
 .hide {
