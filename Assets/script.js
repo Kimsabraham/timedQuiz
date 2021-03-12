@@ -1,28 +1,77 @@
-const startButton = document.getElementById("start-btn");
-const questionContainerEl = document.getElementById("question-container");
+const question = document.getElementById("question");
+const choices = Array.from(document.getElementsByClassName("choice-text"));
 
-const shuffledQuestions, currentQuestionsIndex;
+let currentQuestion = {};
+let acceptingAnswers = false;
+let score = 0;
+let questionCounter = 0;
+let availableQuestions = [];
 
-startButton.addEventListener("click", startGame);
-
-function startGame() {
-  startButton.classList.add("hide");
-  shuffledQuestions = questions.sort(() => Math.random() - 0.5);
-  currentQuestionsIndex = 0;
-  questionContainerEl.classList.remove("hide");
-  setNextQuestion();
-}
-
-function nextQuestion() {}
-
-function selectAnswer() {}
-
-const questions = [
+let questions = [
   {
-    question: " What is HTML?",
-    answers: [
-      { text: "hyper mark up language", correct: true },
-      { text: "one potato", correct: false },
-    ],
+    question: "Inside which HTML element do we put the JavaScript??",
+    choice1: "<script>",
+    choice2: "<javascript>",
+    choice3: "<js>",
+    choice4: "<scripting>",
+    answer: 1,
+  },
+  {
+    question:
+      "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    choice1: "<script href='xxx.js'>",
+    choice2: "<script name='xxx.js'>",
+    choice3: "<script src='xxx.js'>",
+    choice4: "<script file='xxx.js'>",
+    answer: 3,
+  },
+  {
+    question: " How do you write 'Hello World' in an alert box?",
+    choice1: "msgBox('Hello World');",
+    choice2: "alertBox('Hello World');",
+    choice3: "msg('Hello World');",
+    choice4: "alert('Hello World');",
+    answer: 4,
   },
 ];
+
+// constants
+
+const CORRECT_BONUS = 10;
+const MAX_QUESTIONS = 3;
+
+startGame = () => {
+  questionCounter = 0;
+  score = 0;
+  availableQuestions = [...questions];
+  console.log(availableQuestions);
+  getNewQuestion();
+};
+
+getNewQuestion = () => {
+  questionCounter++;
+  const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+  currentQuestion = availableQuestions[questionIndex];
+  question.innerText = currentQuestion.question;
+
+  choices.forEach((choice) => {
+    const number = choice.dataset["number"];
+    choice.innerText = currentQuestion["choice" + number];
+  });
+
+  availableQuestions.splice(questionIndex, 1);
+  acceptingAnswers = true;
+};
+
+choices.forEach((choice) => {
+  choice.addEventListener("click", (e) => {
+    if (!acceptingAnswers) return;
+    acceptingAnswers = false;
+    const selectedChoice = e.target;
+    const seletedAnswers = selectedChoice.dataset["number"];
+    console.log(seletedAnswers);
+    getNewQuestion();
+  });
+});
+
+startGame();
