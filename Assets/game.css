@@ -44,8 +44,20 @@
 .hud-prefix {
   text-align: center;
   font-size: 2rem;
+  border: 3px;
+  font-weight: bold;
 }
 
 .hud-main-text {
   text-align: center;
+}
+
+#status {
+  border: 3px;
+  color: purple;
+  font-weight: bolder;
+}
+
+#hud-items {
+  border: 5px;
 }

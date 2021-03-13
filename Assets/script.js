@@ -1,20 +1,3 @@
-// countdown timer
-// document.addEventListener("DOMContentLoaded", () => {
-//   const timeLeftDisplay = document.querySelector("#time-left");
-//   const startBtn = document.querySelector("#start-button");
-//   let timeLeft = 90;
-
-//   function countDown() {
-//     setInterval(function () {
-//       if (timeLeft <= 0) {
-//         clearInterval((timeLeft = 0));
-//       }
-//       timeLeftDisplay.innerHTML = timeLeft;
-//       timeLeft -= 1;
-//     }, 1000);
-//   }
-//   startBtn.addEventListener("click", countDown);
-// });
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));
 
@@ -55,7 +38,7 @@ let questions = [
 
 // constants
 
-const CORRECT_BONUS = 10;
+const INCORRECT_PENALTY = -5;
 const MAX_QUESTIONS = 5;
 
 // events that happen when you click start game

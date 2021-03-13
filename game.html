@@ -15,8 +15,28 @@
       <div id="game" class="justify-center flex-column">
         <div id="hud">
           <div id="hud items">
-            <p class="hud-prefix">timer</p>
-            <h1 class="hud-main-text" id="time-left">60</h1>
+            <h1 class="hud-prefix">Time</h1>
+            <script>
+              function countDown(secs, elem) {
+                var element = document.getElementById(elem);
+                element.innerHTML = "Time Left " + secs + " seconds";
+                if (secs < 1) {
+                  clearTimeout(timer);
+                  if (seconds < 0) {
+                    window.location.href = "end.html";
+                  }
+                }
+                secs--;
+                var timer = setTimeout(
+                  "countDown(" + secs + ',"' + elem + '")',
+                  1000
+                );
+              }
+            </script>
+            <div id="status"></div>
+            <script>
+              countDown(10, "status");
+            </script>
           </div>
           <div id="hud items">
             <p class="hud-prefix">Score</p>
